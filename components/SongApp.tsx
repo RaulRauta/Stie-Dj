@@ -258,10 +258,12 @@ export default function SongApp() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#050208] px-5 text-white">
         <div className="text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.4em] text-fuchsia-300">
-            DJ Vote Live
+          <p className="text-xs font-bold uppercase tracking-[0.4em] text-purple-300/90">
+            Live Music Voting
           </p>
-          <h1 className="mt-4 text-4xl font-black">Se încarcă...</h1>
+          <h1 className="mt-4 text-4xl font-black tracking-[-0.04em] text-white/90">
+            Se încarcă...
+          </h1>
         </div>
       </main>
     );
@@ -278,17 +280,17 @@ export default function SongApp() {
             ♪
           </div>
 
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-purple-300">
-            DJ Vote Live
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-purple-300/90">
+            Live Music Voting
           </p>
 
-          <h1 className="text-4xl font-black leading-tight md:text-5xl">
-            Votul nu a început încă
+          <h1 className="text-4xl font-black leading-[0.95] tracking-[-0.04em] text-white/90 md:text-5xl">
+            Pregătim votul
           </h1>
 
-          <p className="mx-auto mt-5 max-w-md text-sm leading-6 text-zinc-400 md:text-base">
-            Așteaptă ca DJ-ul să deschidă sesiunea. Pagina se va actualiza
-            automat când votul pornește.
+          <p className="mx-auto mt-5 max-w-md text-[15px] font-medium leading-7 tracking-[0.01em] text-zinc-300/75">
+            Stai aproape. Când DJ-ul pornește sesiunea, pagina se actualizează
+            automat și poți alege piesa ta.
           </p>
 
           <div className="mx-auto mt-8 inline-flex rounded-full border border-purple-500/20 bg-purple-500/10 px-5 py-2 text-sm font-bold text-purple-200">
@@ -308,27 +310,33 @@ export default function SongApp() {
       <div className="relative z-10 mx-auto max-w-5xl">
         <section className="mb-6 rounded-[2rem] border border-white/10 bg-white/[0.05] p-5 text-center shadow-2xl backdrop-blur-xl md:p-8">
           <div className="mx-auto mb-5 inline-flex rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-purple-200">
-            DJ Vote Live
+            Live Music Voting
           </div>
 
-          <h1 className="mx-auto max-w-3xl text-4xl font-black leading-[0.95] md:text-7xl">
-            Votează piesa serii
+          <h1 className="mx-auto max-w-3xl text-4xl font-black leading-[0.92] tracking-[-0.055em] text-white/95 md:text-7xl">
+            Tu alegi următoarea piesă
           </h1>
 
-          <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-zinc-400 md:text-lg">
-            Propune o melodie sau votează una deja adăugată. Cea mai votată
-            piesă ajunge la DJ.
+          <p className="mx-auto mt-5 max-w-xl text-[15px] font-medium leading-7 tracking-[0.01em] text-zinc-300/75 md:text-lg">
+            Scanează, alege melodia ta și urc-o în top. Piesa cu cele mai multe
+            voturi ajunge direct la DJ.
           </p>
 
           <div className="mt-6 grid grid-cols-2 gap-3 md:mx-auto md:max-w-md">
             <div className="rounded-3xl border border-white/10 bg-black/30 p-4">
-              <p className="text-xs text-zinc-500">Melodii</p>
-              <p className="mt-1 text-3xl font-black">{songs.length}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+                Melodii
+              </p>
+              <p className="mt-1 text-3xl font-black tracking-[-0.04em] text-white/90">
+                {songs.length}
+              </p>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-black/30 p-4">
-              <p className="text-xs text-zinc-500">Voturi</p>
-              <p className="mt-1 text-3xl font-black">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+                Voturi
+              </p>
+              <p className="mt-1 text-3xl font-black tracking-[-0.04em] text-white/90">
                 {songs.reduce((total, song) => total + song.votes, 0)}
               </p>
             </div>
@@ -341,20 +349,22 @@ export default function SongApp() {
             className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur-xl md:p-6"
           >
             <div className="mb-5">
-              <p className="text-sm font-semibold text-purple-300">
-                Alegerea ta
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-purple-300/90">
+                Intră în joc
               </p>
-              <h2 className="mt-1 text-2xl font-black">Caută sau propune</h2>
+              <h2 className="mt-2 text-2xl font-black tracking-[-0.035em] text-white/90">
+                Caută piesa ta
+              </h2>
             </div>
 
             <div className="relative mb-3" ref={suggestionRef}>
               <input
                 type="text"
-                placeholder="Titlu melodie..."
+                placeholder="Ex: After Dark"
                 value={title}
                 onChange={(e) => handleTitleChange(e.target.value)}
                 disabled={hasVoted}
-                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-base outline-none transition placeholder:text-zinc-600 focus:border-purple-500 disabled:cursor-default disabled:opacity-60"
+                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-base font-medium text-white/90 outline-none transition placeholder:text-zinc-600 focus:border-purple-500 disabled:cursor-default disabled:opacity-60"
               />
 
               {filteredSongs.length > 0 && (
@@ -371,11 +381,13 @@ export default function SongApp() {
                       className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left transition hover:bg-white/10"
                     >
                       <div>
-                        <p className="font-semibold">{song.title}</p>
-                        <p className="text-sm text-zinc-400">{song.artist}</p>
+                        <p className="font-bold text-white/90">{song.title}</p>
+                        <p className="text-sm font-medium text-zinc-400">
+                          {song.artist}
+                        </p>
                       </div>
 
-                      <span className="shrink-0 rounded-full bg-purple-500/10 px-3 py-1 text-sm font-bold text-purple-200">
+                      <span className="shrink-0 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-sm font-bold text-purple-200">
                         {song.votes} {song.votes === 1 ? "vot" : "voturi"}
                       </span>
                     </button>
@@ -387,11 +399,11 @@ export default function SongApp() {
             <div className="mb-5">
               <input
                 type="text"
-                placeholder="Artist..."
+                placeholder="Ex: Mr.Kitty"
                 value={artist}
                 onChange={(e) => setArtist(e.target.value)}
                 disabled={hasVoted}
-                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-base outline-none transition placeholder:text-zinc-600 focus:border-purple-500 disabled:cursor-default disabled:opacity-60"
+                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-base font-medium text-white/90 outline-none transition placeholder:text-zinc-600 focus:border-purple-500 disabled:cursor-default disabled:opacity-60"
               />
             </div>
 
@@ -404,10 +416,10 @@ export default function SongApp() {
                 ? "Alegerea ta a fost trimisă"
                 : loading
                   ? "Se trimite..."
-                  : "Trimite alegerea"}
+                  : "Trimite votul"}
             </button>
 
-            <p className="mt-4 text-center text-xs leading-5 text-zinc-500">
+            <p className="mt-4 text-center text-xs font-medium leading-5 text-zinc-500">
               {hasVoted
                 ? "Poți urmări live clasamentul mai jos."
                 : "Poți alege o singură melodie în această sesiune."}
@@ -417,17 +429,21 @@ export default function SongApp() {
           <section className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5 shadow-2xl backdrop-blur-xl md:p-6">
             <div className="mb-5 flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-purple-300">Live</p>
-                <h2 className="text-2xl font-black">Leaderboard</h2>
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-purple-300/90">
+                  Live
+                </p>
+                <h2 className="mt-1 text-2xl font-black tracking-[-0.035em] text-white/90">
+                  Topul serii
+                </h2>
               </div>
 
-              <span className="rounded-full bg-purple-500/10 px-4 py-2 text-sm font-bold text-purple-200">
+              <span className="rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-2 text-sm font-bold text-purple-200">
                 Top live
               </span>
             </div>
 
             {!leader && (
-              <p className="rounded-3xl border border-white/10 bg-black/30 p-6 text-center text-zinc-400">
+              <p className="rounded-3xl border border-white/10 bg-black/30 p-6 text-center text-[15px] font-medium leading-6 text-zinc-400">
                 Încă nu există melodii propuse.
               </p>
             )}
@@ -441,29 +457,34 @@ export default function SongApp() {
                 }`}
               >
                 <div className="mb-4 flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-purple-300">
-                      #1 momentan
+                  <div className="min-w-0">
+                    <p className="text-xs font-black uppercase tracking-[0.28em] text-purple-200/90">
+                      În frunte acum
                     </p>
-                    <h3 className="mt-2 text-3xl font-black leading-tight">
+                    <h3 className="mt-2 truncate text-4xl font-black leading-[0.95] tracking-[-0.055em] text-white/95">
                       {leader.title}
                     </h3>
-                    <p className="mt-1 text-zinc-300">{leader.artist}</p>
+                    <p className="mt-2 truncate text-base font-medium text-zinc-300/80">
+                      {leader.artist}
+                    </p>
 
                     {votedSongId === leader.id && (
-                      <div className="mt-3 inline-flex rounded-full border border-purple-400/30 bg-purple-500/10 px-3 py-1 text-xs font-bold text-purple-100">
+                      <div className="mt-4 inline-flex rounded-full border border-purple-400/30 bg-purple-500/10 px-3 py-1 text-xs font-bold text-purple-100">
                         Alegerea ta
                       </div>
                     )}
                   </div>
 
-                  <div className="rounded-2xl bg-white text-center text-black">
-                    <div className="px-4 py-2 text-xs font-black uppercase">
+                  <div className="shrink-0 rounded-3xl border border-purple-400/25 bg-black/35 px-4 py-3 text-center shadow-[0_0_24px_rgba(168,85,247,0.12)]">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-purple-200/70">
                       Voturi
-                    </div>
-                    <div className="border-t border-black/10 px-4 py-2 text-2xl font-black">
+                    </p>
+                    <p className="mt-1 text-4xl font-black leading-none tracking-[-0.06em] text-white/95">
                       {leader.votes}
-                    </div>
+                    </p>
+                    <p className="mt-1 text-[11px] font-bold text-purple-200/70">
+                      {leader.votes === 1 ? "vot" : "voturi"}
+                    </p>
                   </div>
                 </div>
 
@@ -488,13 +509,15 @@ export default function SongApp() {
                   }`}
                 >
                   <div className="flex min-w-0 items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-sm font-black">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-sm font-black text-zinc-200">
                       #{index + 2}
                     </div>
 
                     <div className="min-w-0">
-                      <p className="truncate font-bold">{song.title}</p>
-                      <p className="truncate text-sm text-zinc-400">
+                      <p className="truncate font-black tracking-[-0.025em] text-white/90">
+                        {song.title}
+                      </p>
+                      <p className="truncate text-sm font-medium text-zinc-400">
                         {song.artist}
                       </p>
 
@@ -515,7 +538,7 @@ export default function SongApp() {
                       {voteButtonText}
                     </button>
 
-                    <div className="mt-2 text-xs font-semibold text-purple-300/80">
+                    <div className="mt-2 text-xs font-bold text-purple-300/80">
                       {song.votes} {song.votes === 1 ? "vot" : "voturi"}
                     </div>
                   </div>
